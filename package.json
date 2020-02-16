@@ -1,0 +1,31 @@
+{
+  "name": "graphql-react-event-booking",
+  "version": "1.0.0",
+  "description": "A pure event booking API project written by GraphQL api querying language. This server will have a react-native based front end project soon to interact with the queries. i've started this project to learn GraphQL but it is pretty easy and useful. then i decided to create this repo as a boilerplate code-base for my future evet/booking based applications.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coshkun/graphql-react-event-booking.git"
+  },
+  "keywords": [
+    "event",
+    "booking",
+    "api",
+    "server",
+    "graphql"
+  ],
+  "author": "Coskun Caner",
+  "license": "BSL-1.0",
+  "bugs": {
+    "url": "https://github.com/coshkun/graphql-react-event-booking/issues"
+  },
+  "homepage": "https://github.com/coshkun/graphql-react-event-booking#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1"
+  }
+}
