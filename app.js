@@ -7,17 +7,35 @@ let http = require('http')
 let graphqlHttp = require('express-graphql')
 let { buildSchema } = require('graphql')
 
+let events = []; // temprorary storage on mem
+
 app.use(bodyParser.json())
 
 
 app.use('/graphql', graphqlHttp({
     schema: buildSchema(`
+
+        type Event {
+            _id: ID!
+            title: String!
+            description: String!
+            price: Float!
+            date: String!
+        }
+
+        input EventInput {
+            title: String!
+            description: String!
+            price: Float!
+            date: String!
+        }
+
         type RootQuery {
-            events: [String!]!
+            events: [Event!]!
         }
 
         type RootMutation {
-            createEvent(name: String): String
+            createEvent(eventInput: EventInput): Event
         }
 
         schema {
@@ -27,11 +45,18 @@ app.use('/graphql', graphqlHttp({
     `),
     rootValue: {
         events: () => {
-            return ['Romantic Cooking', 'Sailing', 'All Night Coding']
+            return events
         },
         createEvent: (args) => {
-            let eventName = args.name
-            return eventName
+            let event = {
+                _id: Math.floor(Math.random() * 1000000000).toString(),
+                title: args.eventInput.title,
+                description: args.eventInput.description,
+                price: +args.eventInput.price,  // + sign converts value to float
+                date: new Date().toISOString()
+            }
+            events.push(event)
+            return event
         }
     },
     graphiql: true // visual debuger tool
